@@ -17,12 +17,14 @@ public class InventoryListener implements Listener {
 
     @EventHandler
     public void onInventoryOpen(InventoryOpenEvent event) {
+        String eventTitle = event.getView().getTitle();
         if (((!event.getInventory().getType().defaultTitle().equals("Crafting"))
-                && (!InventoryVanisher.getDefaultMenuNames().contains(event.getView().getTitle()))
+                && (!InventoryVanisher.getDefaultMenuNames().contains(eventTitle))
                 && InventoryVanisher.getVanishOnAllNames())
-                || InventoryVanisher.getInventoryNames().contains(event.getView().getTitle())) {
+                && (!InventoryVanisher.getBlacklistMenuNames().contains(eventTitle))
+                || (InventoryVanisher.getInventoryNames().contains(eventTitle)
+                    && (!InventoryVanisher.getBlacklistMenuNames().contains(eventTitle)))) {
             HumanEntity ePlayer = event.getPlayer();
-            ePlayer.sendMessage(event.getView().getTitle());
             PlayerInventory ePlayerInv = ePlayer.getInventory();
             playerInventories.put(ePlayer, ePlayerInv.getContents());
             ePlayerInv.clear();
@@ -31,10 +33,13 @@ public class InventoryListener implements Listener {
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
         HumanEntity ePlayer = event.getPlayer();
+        String eventTitle = event.getView().getTitle();
         if (((!event.getInventory().getType().defaultTitle().equals("Crafting"))
-                && (!InventoryVanisher.getDefaultMenuNames().contains(event.getView().getTitle()))
+                && (!InventoryVanisher.getDefaultMenuNames().contains(eventTitle))
                 && (InventoryVanisher.getVanishOnAllNames())
-                || (InventoryVanisher.getInventoryNames().contains(event.getView().getTitle())
+                && (!InventoryVanisher.getBlacklistMenuNames().contains(eventTitle))
+                || (InventoryVanisher.getInventoryNames().contains(eventTitle)
+                && (!InventoryVanisher.getBlacklistMenuNames().contains(eventTitle))
                 && playerInventories.containsKey(ePlayer)
                 && playerInventories.get(ePlayer) != null))) {
             ePlayer.getInventory().setContents(playerInventories.get(ePlayer));

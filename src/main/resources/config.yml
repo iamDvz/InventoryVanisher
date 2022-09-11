@@ -1,4 +1,5 @@
 vanish-on-all-menu-names: true #self-explained
 # TODO items-return-delay: 1
 menu-names: [] #menu where hide items
-default-menu-names: ["Chest", "Large Chest"] #minecraft names, aka "blacklist" but not
+default-menu-names: ["Chest", "Large Chest"] #minecraft names, aka "blacklist" but not. works only when vanish-on-all-menu-names: true
+blacklist-menu-names: [] #real blacklist. works everywhere

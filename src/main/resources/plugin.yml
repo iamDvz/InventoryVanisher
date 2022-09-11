@@ -5,3 +5,8 @@ api-version: 1.16
 authors: [ iamDvz ]
 description: just vanish inventory on menu
 website: iamDvz.ru
+commands:
+  ivanisher:
+    description: ""
+    usage: /ivanisher
+    permission: inventoryvanisher.allcommands

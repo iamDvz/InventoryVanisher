@@ -1,27 +1,26 @@
 package ru.iamdvz.inventoryvanisher;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import ru.iamdvz.inventoryvanisher.commands.InventoryCommands;
 import ru.iamdvz.inventoryvanisher.listeners.InventoryListener;
 
 import java.util.List;
+import java.util.Objects;
 
 public final class InventoryVanisher extends JavaPlugin {
     private static InventoryVanisher instance;
-    private List<String> inventoryNames;
-    private boolean vanishOnAllNames;
-    //private int itemsReturnDelay;
-    private List<String> defaultMenuNames;
+    private static List<String> inventoryNames;
+    private static boolean vanishOnAllNames;
+    private static List<String> defaultMenuNames;
+    private static List<String> blacklistMenuNames;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
         instance = this;
         saveDefaultConfig();
-        inventoryNames = this.getConfig().getStringList("menu-names");
-        vanishOnAllNames = this.getConfig().getBoolean("vanish-on-all-menu-names");
-        //itemsReturnDelay = this.getConfig().getInt("items-return-delay");
-        defaultMenuNames = this.getConfig().getStringList("default-menu-names");
         getServer().getPluginManager().registerEvents(new InventoryListener(), this);
+        Objects.requireNonNull(this.getCommand("ivanisher")).setExecutor(new InventoryCommands());
     }
 
     @Override
@@ -32,17 +31,22 @@ public final class InventoryVanisher extends JavaPlugin {
     public static InventoryVanisher getInstance() {
         return instance;
     }
-
     public static List<String> getInventoryNames() {
-        return instance.inventoryNames;
+        return inventoryNames;
     }
     public static boolean getVanishOnAllNames() {
-        return instance.vanishOnAllNames;
+        return vanishOnAllNames;
     }
     public static List<String> getDefaultMenuNames() {
-        return instance.defaultMenuNames;
+        return defaultMenuNames;
     }
-    //public static int getItemsReturnDelay() {
-    //    return instance.itemsReturnDelay;
-    //}
+    public static List<String> getBlacklistMenuNames() {
+        return blacklistMenuNames;
+    }
+    public static void loadFromConfig() {
+        inventoryNames = instance.getConfig().getStringList("menu-names");
+        vanishOnAllNames = instance.getConfig().getBoolean("vanish-on-all-menu-names");
+        defaultMenuNames = instance.getConfig().getStringList("default-menu-names");
+        blacklistMenuNames = instance.getConfig().getStringList("blacklist-menu-names");
+    }
 }
