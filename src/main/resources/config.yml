@@ -1,2 +1,4 @@
-vanish-on-all-menu-names: true
-menu-names: []
+vanish-on-all-menu-names: true #self-explained
+# TODO items-return-delay: 1
+menu-names: [] #menu where hide items
+default-menu-names: ["Chest", "Large Chest"] #minecraft names, aka "blacklist" but not

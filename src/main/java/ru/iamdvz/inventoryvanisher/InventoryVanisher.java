@@ -9,6 +9,8 @@ public final class InventoryVanisher extends JavaPlugin {
     private static InventoryVanisher instance;
     private List<String> inventoryNames;
     private boolean vanishOnAllNames;
+    private int itemsReturnDelay;
+    private List<String> defaultMenuNames;
 
     @Override
     public void onEnable() {
@@ -17,6 +19,8 @@ public final class InventoryVanisher extends JavaPlugin {
         saveDefaultConfig();
         inventoryNames = this.getConfig().getStringList("menu-names");
         vanishOnAllNames = this.getConfig().getBoolean("vanish-on-all-menu-names");
+        itemsReturnDelay = this.getConfig().getInt("items-return-delay");
+        defaultMenuNames = this.getConfig().getStringList("default-menu-names");
         getServer().getPluginManager().registerEvents(new InventoryListener(), this);
     }
 
@@ -35,4 +39,10 @@ public final class InventoryVanisher extends JavaPlugin {
     public static boolean getVanishOnAllNames() {
         return instance.vanishOnAllNames;
     }
+    public static List<String> getDefaultMenuNames() {
+        return instance.defaultMenuNames;
+    }
+    //public static int getItemsReturnDelay() {
+    //    return instance.itemsReturnDelay;
+    //}
 }
