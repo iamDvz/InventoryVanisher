@@ -1,0 +1,7 @@
+name: InventoryVanisher
+version: '${project.version}'
+main: ru.iamdvz.inventoryvanisher.InventoryVanisher
+api-version: 1.16
+authors: [ iamDvz ]
+description: just vanish inventory on menu
+website: iamDvz.ru
