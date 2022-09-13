@@ -50,6 +50,7 @@ public class InventoryListener implements Listener {
                 @Override
                 public void run() {
                     ePlayer.getInventory().setContents(playerInventories.get(ePlayer));
+                    playerInventories.remove(ePlayer);
                 }
             }, InventoryVanisher.getVanishDelay());
 
