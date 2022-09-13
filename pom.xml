@@ -6,7 +6,7 @@
 
     <groupId>ru.iamdvz.inventoryvanisher</groupId>
     <artifactId>InventoryVanisher</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>RELEASE-1.0</version>
     <packaging>jar</packaging>
 
     <name>InventoryVanisher</name>
