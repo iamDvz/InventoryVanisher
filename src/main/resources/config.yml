@@ -3,3 +3,4 @@ vanish-on-all-menu-names: true #self-explained
 menu-names: [] #menu where hide items
 blacklist-menu-names: [] #real blacklist. works everywhere
 # TODO give-gathered-items: true #should be gathered items in vanish be in inventory later
+vanish-delay: 1 #self-explained

@@ -13,6 +13,7 @@ public final class InventoryVanisher extends JavaPlugin {
     private static List<String> inventoryNames;
     private static boolean vanishOnAllNames;
     private static List<String> blacklistMenuNames;
+    private static int vanishDelay;
 
     @Override
     public void onEnable() {
@@ -43,10 +44,14 @@ public final class InventoryVanisher extends JavaPlugin {
     public static List<String> getBlacklistMenuNames() {
         return blacklistMenuNames;
     }
+    public static int getVanishDelay() {
+        return vanishDelay;
+    }
     public static void loadFromConfig() {
         inventoryNames = instance.getConfig().getStringList("menu-names");
         vanishOnAllNames = instance.getConfig().getBoolean("vanish-on-all-menu-names");
         blacklistMenuNames = instance.getConfig().getStringList("blacklist-menu-names");
+        vanishDelay = instance.getConfig().getInt("vanish-delay");
 
         if (inventoryNames == null) {
             inventoryNames = Collections.singletonList(" ");
@@ -54,6 +59,9 @@ public final class InventoryVanisher extends JavaPlugin {
 
         if (blacklistMenuNames == null) {
             blacklistMenuNames = Collections.singletonList(" ");
+        }
+        if (vanishDelay <= 0) {
+            vanishDelay = 1;
         }
     }
 }
