@@ -49,8 +49,10 @@ public class InventoryListener implements Listener {
             Bukkit.getScheduler().runTaskLater(InventoryVanisher.getInstance(), new Runnable() {
                 @Override
                 public void run() {
-                    ePlayer.getInventory().setContents(playerInventories.get(ePlayer));
-                    playerInventories.remove(ePlayer);
+                    if (playerInventories.get(ePlayer) != null) {
+                        ePlayer.getInventory().setContents(playerInventories.get(ePlayer));
+                        playerInventories.remove(ePlayer);
+                    }
                 }
             }, InventoryVanisher.getVanishDelay());
 
